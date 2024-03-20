@@ -1,17 +1,25 @@
-# About
-The **zimbra-8815** image is preloaded with RockyLinux 8 and Zimbra 8.8.15 FOSS Edition.
+# How to use the Zimbra Docker
 
-## Create compose.yml
+This is the recommended way to run Zimbra Docker.
 
+## Sample compose.yml
+
+### Create the project folder
+
+```bash
+mkdir myproject
+cd myproject
+mkdir configs
 ```
-$ mkdir myproject
-$ cd myproject
-$ mkdir configs
-$ cat <<EOT > compose.yml
+
+### Create the `compose.yml` file
+
+```bash
+cat <<EOT > compose.yml
 services:
   mail:
     # Build
-    build: build 
+    build: build
     image: yeak/zimbra-8815
 
     # Run
@@ -50,12 +58,18 @@ volumes:
 EOT
 ```
 
-- Edit **environment** and **ports** values accordingly
+- Change `hostname` value and register it in your DNS.
+- Edit `DEFAULT_ADMIN`, `DEFAULT_PASSWORD`, `DEFAULT_TIMEZONE`
+- Set `MAX_MEMORY_GB` value you want Zimbra to consume from your host machine.
+
+**Special container networks**
+
+If you plan to run Zimbra container in dedicated network and routable, you can check out `zimbranet.sh` file. Then enable the networks section with `external: true`.
 
 ## Start the container
 
-```
-$ docker compose up -d
+```bash
+docker compose up -d
 ```
 
 The first time you start the container, it will automatically configure itself using the information you set in the environment variables.
@@ -64,8 +78,8 @@ To watch the output of the setup process, type `docker logs -f myproject-mail-1`
 
 ## Stop the container
 
-```
-$ docker compose down
+```bash
+docker compose down
 ```
 
 This will shutdown the container. Your data is safe in the docker volume.
@@ -82,21 +96,21 @@ By default the `/var/lib/docker` folder is your data. You should backup it.
 
 Once a while Zimbra will release new updates. We will build again the new image and push to the docker hub. You just need to `pull` the new image, `down` and `up` the container.
 
-```
-$ docker compose pull
-$ docker compose down
-$ docker compose up -d
+```bash
+docker compose pull
+docker compose down
+docker compose up -d
 ```
 
 ## Reset to default
 
 To clean up and restart again all above,
 
-```
-$ docker compose down
-$ docker volume ls
-$ docker volume rm myproject_data
-$ docker compose up -d
+```bash
+docker compose down
+docker volume ls
+docker volume rm myproject_data
+docker compose up -d
 ```
 
 NOTE: Remove volume will destroy all your data.
