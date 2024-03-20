@@ -1,10 +1,10 @@
 # Build the image
 
-You can skip this if you do not intend to customize the image. You could just tell us what you have in mind and we see if it could be incorporated in the new image.
+You can skip this if you do not intend to customize the image.
 
 Image building blueprint is in `build/Dockerfile`.
 
-1. The base OS is RockyLinux 8. This must follow what Zimbra software is released for.
+1. The base OS is RockyLinux 8. This OS choice depends on the Zimbra software requirements.
 2. Install Zimbra with software-only option. We intend to do Standalone installation, so all software for standalone will be installed.
 3. Containers are slim down OS by design. It does not need cron and syslog. But our Zimbra expects them to work. So we add back the basic `sshd`, `rsyslog`, `crond`, `sysstat` only.
 
@@ -25,7 +25,7 @@ This complete our Zimbra Dockerfile preparation.
 
 To build the image, run `docker build -t myzmdocker ./build`.
 
-# Run the image
+## Run the image
 
 To test your image, run this:
 
@@ -39,7 +39,7 @@ If you want to test the image without auto-configuring:
 
 The container will start and give you a shell prompt.
 
-# Stop and remove the container
+## Stop and remove the container
 
 When the container exit, it will just stop and do nothing.
 
@@ -49,11 +49,11 @@ To see the volume, run this:
 
     `docker volume ls`
 
-# Run the container using compose file
+## Run the container using compose file
 
-A more organized way is to use `compose.yml`. Refer to [[USAGE]] for more information.
+A more organized way is to use `compose.yml`. Refer to [USAGE](USAGE.md) for more information.
 
-# How to add customization
+## How to add customization
 
 In the `configs` folder there is `pre-startup.sh` and `post-startup.sh`. The first one is to run before Zimbra is started. The latter one run after Zimbra is started. The logic is inside `start.sh` script.
 
