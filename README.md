@@ -4,7 +4,7 @@ Zimbra is a great Open Source email server. It is widely used in private cloud o
 
 1. Create a VM (or physical server). Install Basic OS.
 2. Install Docker following this guide: https://docs.docker.com/engine/install/
-3. See [[USAGE]] file to run your Zimbra.
+3. See [USAGE](USAGE.md) file to run your Zimbra.
 
 # Zimbra Docker container
 
@@ -26,8 +26,8 @@ You can use 3 VM for each of the environment above. Or you can squeeze all into 
 
 By following the process above, you avoid modifying the production system directly. You should test it at Devel, verify it at Staging, and then finally apply it to the Production. This give you a predictable outcome.
 
-Refer to the [[USAGE]] for deployment guide.
+Refer to the [USAGE](USAGE.md) for deployment guide.
 
 # Build the image
 
-Refer to the [[BUILD]] for more info.
+Refer to the [BUILD](BUILD.md) for more info.
