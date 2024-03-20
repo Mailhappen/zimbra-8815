@@ -1,49 +1,33 @@
-# Run Zimbra in Docker
+# About Zimbra
 
-This is Zimbra all-in-one in docker. Multiserver is in the plan.
+Zimbra is a great Open Source email server. It is widely used in private cloud or on-premise. Installing Zimbra can be challenging, so we make this into container for easy deployment. The steps can be summaried as below:
 
-# Basic stuffs
+1. Create a VM (or physical server). Install Basic OS.
+2. Install Docker following this guide: https://docs.docker.com/engine/install/
+3. See [[USAGE]] file to run your Zimbra.
 
-The build has `Dockerfile`. It creates the images and we push it to Docker Hub for mass deployment.
+# Zimbra Docker container
 
-The `compose.yml` coordinate the running of Zimbra in production. It attaches the data volume to the container and start it.
+Docker is a great tool for system integrator to automate the deployment work so that it is predictable and easy to maintain afterward.
 
-When container is running, the `entrypoint.sh` will "glue" the data and do the necessary works to start the Zimbra up.
+The Zimbra software is designed to run as VM. However we package it to run as Docker container. The result is still a traditional Zimbra on VM but run as a container.
 
-By doing so we can always push new updated images and consumers pull to enjoy the new updates.
+# Example use of this solution
 
-Many more enhancements can be made to add customizations into the images so that every updates will maintain or reapply the customizations.
+Here is one good way to deploy our Zimbra container:
 
-# Build
+1. Devel: `mkdir devel` and create `compose.yml`. This can be used for testing and further development. Test your changes before try it on production.
 
-The `build` folder consists of `build.sh` script. Run it to make a new images.
+2. Staging: `mkdir staging` and create `compose.yml`. Apply what you did in the testing environment here. A staging environment could have other systems relying on your Zimbra. This is a good place to verify everything still work as expected.
 
-```
-$ build/build.sh
-```
-Check the image is created.
+3. Production: `mkdir production` and create `compose.yml`. The actual production environment.
 
-```
-$ docker images
-```
+You can use 3 VM for each of the environment above. Or you can squeeze all into one VM.
 
-You can edit the build.sh to change the tag to your preference.
+By following the process above, you avoid modifying the production system directly. You should test it at Devel, verify it at Staging, and then finally apply it to the Production. This give you a predictable outcome.
 
-# Run it first time
+Refer to the [[USAGE]] for deployment guide.
 
-When run it first time, the container will configure the Zimbra using information from compose.yml. This will take some times to complete.
+# Build the image
 
-# Run in production
-
-You should be able to run the container in production using this flow.
-
-```
-$ docker compose pull
-$ docker compose down
-$ docker compose up -d
-```
-
-# Zimbranet
-
-The `zimbranet.sh` create a container network and expose the container directly to the host network . This make your container no longer hidden inside the host. Use this with care.
-
+Refer to the [[BUILD]] for more info.
