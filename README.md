@@ -1,4 +1,4 @@
-# About Zimbra
+# About Zimbra Docker
 
 Zimbra is a great Open Source email server. It is widely used in private cloud or on-premise. Installing Zimbra can be challenging, so we make this into container for easy deployment. The steps can be summaried as below:
 
@@ -6,13 +6,13 @@ Zimbra is a great Open Source email server. It is widely used in private cloud o
 2. Install Docker following this guide: https://docs.docker.com/engine/install/
 3. See [USAGE](USAGE.md) file to run your Zimbra.
 
-# Zimbra Docker container
+## Zimbra Docker container
 
 Docker is a great tool for system integrator to automate the deployment work so that it is predictable and easy to maintain afterward.
 
 The Zimbra software is designed to run as VM. However we package it to run as Docker container. The result is still a traditional Zimbra on VM but run as a container.
 
-# Example use of this solution
+## Example use of this solution
 
 Here is one good way to deploy our Zimbra container:
 
@@ -28,6 +28,6 @@ By following the process above, you avoid modifying the production system direct
 
 Refer to the [USAGE](USAGE.md) for deployment guide.
 
-# Build the image
+## Build the image
 
 Refer to the [BUILD](BUILD.md) for more info.
