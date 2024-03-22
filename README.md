@@ -31,3 +31,17 @@ Refer to the [USAGE](USAGE.md) for deployment guide.
 ## Build the image
 
 Refer to the [BUILD](BUILD.md) for more info.
+
+## Questions and Answers
+
+1. How to access the container shell prompt?
+
+   `docker exec -it myproject-mail-1 /bin/bash`
+
+2. Is FOSS end of life?
+
+   Yes, this 8.8.15 is end of life on 31 Dec 2023. https://www.zimbra.com/product/product-lifecycle/
+
+3. How can I contribute?
+
+   The source is published at https://github.com/Mailhappen/zimbra-8815
