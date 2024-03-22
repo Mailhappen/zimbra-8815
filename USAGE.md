@@ -2,17 +2,14 @@
 
 This is the recommended way to run Zimbra Docker.
 
-## Sample compose.yml
-
-### Create the project folder
+## Create the project folder structure
 
 ```bash
-mkdir myproject
+mkdir -p myproject/configs
 cd myproject
-mkdir configs
 ```
 
-### Create the `compose.yml` file
+## Create the `compose.yml` file
 
 ```bash
 cat <<EOT > compose.yml
