@@ -29,13 +29,13 @@ To build the image, run `docker build -t myzmdocker ./build`.
 
 To test your image, run this:
 
-    `docker run -it myzmdocker`
+    docker run -it myzmdocker
 
 This will begin the configuration of Zimbra using the default values. The `entrypoint.sh` is doing all the work here.
 
 If you want to test the image without auto-configuring:
 
-    `docker run -it myzmdocker /bin/bash`
+    docker run -it myzmdocker /bin/bash
 
 The container will start and give you a shell prompt.
 
@@ -47,7 +47,7 @@ You can remove the container using `docker rm [container-id]`. The temporary con
 
 To see the volume, run this:
 
-    `docker volume ls`
+    docker volume ls
 
 ## Run the container using compose file
 
