@@ -125,17 +125,3 @@ Here is a good use case when run as container:
 3. Production: `mkdir production` and create `compose.yml`. The actual production environment.
 
 You can use 3 VM for each of the environment above. Or you can squeeze all into one VM.
-
-## More helps
-
-1. How to access the container shell prompt?
-
-   `docker exec -it myproject-mail-1 /bin/bash`
-
-2. Is FOSS end of life?
-
-   Yes, this 8.8.15 is end of life on 31 Dec 2023. https://www.zimbra.com/product/product-lifecycle/
-
-3. How can I contribute?
-
-   The source is published at https://github.com/Mailhappen/zimbra-8815
