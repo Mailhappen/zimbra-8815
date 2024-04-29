@@ -9,11 +9,6 @@ services:
     volumes:
       - data:/data
       - ./configs:/configs
-    environment:
-      DEFAULT_PASSWORD: Zimbra2024
-      DEFAULT_TIMEZONE: Asia/Kuala_Lumpur
-      DEFAULT_ADMIN: sysadmin
-      MAX_MEMORY_GB: 8
     restart: unless-stopped
     ports:
       - "80:80"

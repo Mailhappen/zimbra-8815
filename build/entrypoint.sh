@@ -91,12 +91,19 @@ function adjustmemorysize() {
 
 # Main
 
-mypassword="${DEFAULT_PASSWORD:=zimbra}"
+# Enable debug
+set -x
+
+# Load our profile
+source /configs/config.inc
+
 myhostname="$(hostname -s)"
 mydomain="$(hostname -d)"
+[ -z "$mydomain" ] && mydomain="zimbra.lab"
 myfqdn="$myhostname.$mydomain"
 myadmin="${DEFAULT_ADMIN:=sysadmin}"
-mytimezone="${DEFAULT_TIMEZONE:=Asia/Kuala_Lumpur}"
+mypassword="${DEFAULT_PASSWORD:=zimbra}"
+mytimezone="${TIMEZONE:=Asia/Kuala_Lumpur}"
 maxmem="${MAX_MEMORY_GB:=8}"
 
 # Set system timezone
@@ -104,11 +111,6 @@ maxmem="${MAX_MEMORY_GB:=8}"
 
 # Automatic run as service
 if [ -z "$@" ]; then
-  # Good to enable debug here
-  set -x
-
-  # Avoid running if mydomain is empty
-  [ -z "$mydomain" ] && exit
 
   # Run init
   [ ! -f /init.done ] && init 
