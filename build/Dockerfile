@@ -1,30 +1,6 @@
-FROM rockylinux:8
+FROM yeak/baseimage-rockylinux:8
 
-# Prepare OS
-
-RUN yum install epel-release -y \
-  && yum groupinstall "Minimal Install" --allowerasing -y \
-  && yum install -y \
-  glibc-all-langpacks \
-  net-tools \
-  nmap-ncat \
-  dnsutils \
-  perl \
-  spax \
-  sqlite \
-  libidn \
-  libaio \
-  libicu \
-  perl-Socket6 \
-  sysstat \
-  tmux \
-  supervisor \
-  && yum update -y \
-  && yum clean all \
-  && rm -f /var/log/dnf.* \
-  && rm -f /var/log/*log
-
-# Install Zimbra softwareonly
+# Zimbra softwareonly
 
 COPY keystrokes /installer/
 
@@ -43,13 +19,12 @@ RUN cd /installer \
 
 # Supervisor
 
-COPY --chmod=644 supervisord.conf /supervisord.conf
-COPY --chmod=775 supervisor/ /supervisor/
-COPY --chmod=644 sysstat.cron /etc/cron.d/sysstat
+COPY --chmod=644 zimbra.ini /etc/supervisord.d/zimbra.ini
 COPY --chmod=775 savedata.sh /etc/cron.daily/savedata.sh
 COPY --chmod=775 entrypoint.sh start.sh /
 
-ENTRYPOINT ["/entrypoint.sh"]
+#ENTRYPOINT ["/entrypoint.sh"]
+#CMD ["/bin/bash"]
 
 VOLUME /data
 

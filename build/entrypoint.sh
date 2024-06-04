@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Initialize our applications
 
 function copyln() {
@@ -27,7 +28,7 @@ function init() {
   copyln /data/rsyslog.conf     /etc/rsyslog.conf
 
   # to improve more in future...
-  copyln /data/common-conf      /opt/zimbra/common/conf
+#  copyln /data/common-conf      /opt/zimbra/common/conf
   copyln /data/common-etc       /opt/zimbra/common/etc
   copyln /data/common-jetty     /opt/zimbra/common/jetty_home
   copyln /data/jetty-etc        /opt/zimbra/jetty_base/etc
