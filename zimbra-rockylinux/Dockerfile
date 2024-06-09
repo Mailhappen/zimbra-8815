@@ -1,7 +1,5 @@
 FROM yeak/baseimage-rockylinux:8
 
-# Zimbra softwareonly
-
 COPY keystrokes /installer/
 
 RUN cd /installer \
@@ -17,14 +15,9 @@ RUN cd /installer \
   && mv /tmp/install.log* /opt/zimbra/log/ \
   && install -m 644 -o zimbra -g zimbra /dev/null /var/log/zimbra-stats.log
 
-# Supervisor
-
 COPY --chmod=644 zimbra.ini /etc/supervisord.d/zimbra.ini
-COPY --chmod=775 savedata.sh /etc/cron.daily/savedata.sh
-COPY --chmod=775 entrypoint.sh start.sh /
-
-#ENTRYPOINT ["/entrypoint.sh"]
-#CMD ["/bin/bash"]
+COPY --chmod=775 entrypoint.sh start.sh /root/
+#COPY --chmod=775 savedata.sh /etc/cron.daily/savedata.sh
 
 VOLUME /data
 

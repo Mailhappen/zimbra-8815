@@ -27,4 +27,4 @@ COPY --chmod=644 default.ini /etc/supervisord.d/default.ini
 COPY --chmod=775 supervisor/ /supervisor/
 COPY --chmod=644 sysstat.cron /etc/cron.d/sysstat
 
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
+ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
